@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Document List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div class="container">
+    <div class="upload-content">
+        <h3>Choose File To Upload</h3>
+        <form method="POST" action="/upload" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Select File</label>
+                <input type="file" name="file" id="file" class="form-control"/>
+            </div>
+            <button type="submit" class="btn btn-success">Upload</button>
+        </form>
+    </div>
+    <div class="document-list">
+
+    </div>
+    <h3>Documents</h3>
+    <table class="table" th:if="${not #lists.isEmpty(documentList)}">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Path</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+        <tr data-th-each="doc : ${documentList}">
+            <td data-th-text="${doc.id}"></td>
+            <td data-th-text="${doc.name}"></td>
+            <td data-th-text="${doc.description}"></td>
+            <td data-th-text="${doc.path}"></td>
+
+            <td th:if="${doc.status == 1}">
+                <a th:href="${doc.path}" class="btn btn-success btn-sm">Download</a>
+            </td>
+            <td th:if="${doc.status == 2}">
+                <form method="POST" th:action="@{/document/delete}">
+                    <input type="hidden" name="id" id="id" th:value="${doc.id}"/>
+                    <button type="submit">Remove</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
