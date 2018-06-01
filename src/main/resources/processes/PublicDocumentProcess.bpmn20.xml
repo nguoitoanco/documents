@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:modeler="http://activiti.com/modeler" targetNamespace="http://www.activiti.org/processdef"
+             modeler:version="1.0en" modeler:exportDateTime="20180511164804130" modeler:modelId="1"
+             modeler:modelVersion="1" modeler:modelLastUpdated="1526032079512">
+  <process id="PublicDocumentProcess" name="PublicDocumentProcess" isExecutable="true">
+    <startEvent id="StartEvent_132ojwq" name="start">
+      <outgoing>SequenceFlow_0tp7mzi</outgoing>
+    </startEvent>
+    <userTask id="UserTask_11yo69l" name="Check CV Document">
+      <incoming>SequenceFlow_0tp7mzi</incoming>
+      <outgoing>SequenceFlow_0vuscl2</outgoing>
+    </userTask>
+    <sequenceFlow id="SequenceFlow_0tp7mzi" sourceRef="StartEvent_132ojwq" targetRef="UserTask_11yo69l" />
+    <exclusiveGateway id="ExclusiveGateway_1mxtxd8">
+      <incoming>SequenceFlow_0vuscl2</incoming>
+      <outgoing>SequenceFlow_0oyoxkd</outgoing>
+      <outgoing>SequenceFlow_1su1q1o</outgoing>
+    </exclusiveGateway>
+    <task id="Task_15q6qvg" name="Reject">
+      <incoming>SequenceFlow_0oyoxkd</incoming>
+      <outgoing>SequenceFlow_0mll6k5</outgoing>
+    </task>
+    <sequenceFlow id="SequenceFlow_0vuscl2" sourceRef="UserTask_11yo69l" targetRef="ExclusiveGateway_1mxtxd8" />
+    <sequenceFlow id="SequenceFlow_0oyoxkd" name="Invalid" sourceRef="ExclusiveGateway_1mxtxd8" targetRef="Task_15q6qvg" />
+    <task id="Task_1gu0uxu" name="Approved">
+      <incoming>SequenceFlow_1su1q1o</incoming>
+      <outgoing>SequenceFlow_1wpij0c</outgoing>
+    </task>
+    <sequenceFlow id="SequenceFlow_1su1q1o" name="valid" sourceRef="ExclusiveGateway_1mxtxd8" targetRef="Task_1gu0uxu" />
+    <endEvent id="EndEvent_19db1zx" name="end">
+      <incoming>SequenceFlow_0mll6k5</incoming>
+      <incoming>SequenceFlow_1wpij0c</incoming>
+    </endEvent>
+    <sequenceFlow id="SequenceFlow_0mll6k5" sourceRef="Task_15q6qvg" targetRef="EndEvent_19db1zx" />
+    <sequenceFlow id="SequenceFlow_1wpij0c" sourceRef="Task_1gu0uxu" targetRef="EndEvent_19db1zx" />
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_PublicDocumentProcess">
+    <bpmndi:BPMNPlane id="BPMNPlane_PublicDocumentProcess" bpmnElement="PublicDocumentProcess">
+      <bpmndi:BPMNShape id="StartEvent_132ojwq_di" bpmnElement="StartEvent_132ojwq">
+        <omgdc:Bounds x="222" y="-1189" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="229" y="-1149" width="23" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_11yo69l_di" bpmnElement="UserTask_11yo69l">
+        <omgdc:Bounds x="315" y="-1211" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0tp7mzi_di" bpmnElement="SequenceFlow_0tp7mzi">
+        <omgdi:waypoint x="258" y="-1171" />
+        <omgdi:waypoint x="315" y="-1171" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="286.5" y="-1192" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ExclusiveGateway_1mxtxd8_di" bpmnElement="ExclusiveGateway_1mxtxd8" isMarkerVisible="true">
+        <omgdc:Bounds x="493" y="-1196" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="518" y="-1218" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_15q6qvg_di" bpmnElement="Task_15q6qvg">
+        <omgdc:Bounds x="674" y="-1257" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0vuscl2_di" bpmnElement="SequenceFlow_0vuscl2">
+        <omgdi:waypoint x="415" y="-1171" />
+        <omgdi:waypoint x="493" y="-1171" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="454" y="-1192" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0oyoxkd_di" bpmnElement="SequenceFlow_0oyoxkd">
+        <omgdi:waypoint x="543" y="-1171" />
+        <omgdi:waypoint x="609" y="-1171" />
+        <omgdi:waypoint x="609" y="-1217" />
+        <omgdi:waypoint x="674" y="-1217" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="551" y="-1187" width="32" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Task_1gu0uxu_di" bpmnElement="Task_1gu0uxu">
+        <omgdc:Bounds x="674" y="-1130" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1su1q1o_di" bpmnElement="SequenceFlow_1su1q1o">
+        <omgdi:waypoint x="518" y="-1146" />
+        <omgdi:waypoint x="518" y="-1090" />
+        <omgdi:waypoint x="674" y="-1090" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="521" y="-1124" width="24" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_19db1zx_di" bpmnElement="EndEvent_19db1zx">
+        <omgdc:Bounds x="861" y="-1235" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="870" y="-1195" width="19" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0mll6k5_di" bpmnElement="SequenceFlow_0mll6k5">
+        <omgdi:waypoint x="774" y="-1217" />
+        <omgdi:waypoint x="861" y="-1217" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="817.5" y="-1238" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1wpij0c_di" bpmnElement="SequenceFlow_1wpij0c">
+        <omgdi:waypoint x="774" y="-1090" />
+        <omgdi:waypoint x="818" y="-1090" />
+        <omgdi:waypoint x="818" y="-1217" />
+        <omgdi:waypoint x="861" y="-1217" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="833" y="-1159.5" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
