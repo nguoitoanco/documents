@@ -1,4 +1,4 @@
-# Spring Boot app
+# Spring Boot Docker Postgres Application
 
 ## 1. Development Enviroment
 `Window 10 pro`
