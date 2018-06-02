@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 public interface DocumentService {
-
+    Document findById(Integer id);
     List<Document> findAll();
     Document upload(MultipartFile files, String path);
 

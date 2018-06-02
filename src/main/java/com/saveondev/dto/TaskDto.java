@@ -1,6 +1,7 @@
 package com.saveondev.dto;
 
 import com.saveondev.entity.Document;
+import lombok.Data;
 
 public class TaskDto {
     private String id;
@@ -9,6 +10,14 @@ public class TaskDto {
     public TaskDto(String id, Document document) {
         this.id = id;
         this.document = document;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Document getDocument() {

@@ -3,31 +3,46 @@
 <head>
     <title>Task List Management</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 </head>
 <body>
 <div class="container">
+    <div class="menu col-lg-6 mt-2 mb-2">
+        <div class="col-lg-3">
+            <form method="GET" th:action="@{/}">
+                <button type="submit" class="btn btn-primary btn-sm">Document List</button>
+            </form>
+
+        </div>
+        <div class="col-lg-3">
+            <form method="GET" th:action="@{/taskList}">
+                <button type="submit" class="btn btn-primary btn-sm">Task List</button>
+            </form>
+        </div>
+    </div>
+
     <h3>Task List</h3>
     <table class="table" th:if="${not #lists.isEmpty(tasks)}">
         <tr>
+            <th>Task Id</th>
             <th>Name</th>
             <th>Description</th>
-            <th>Status</th>
             <th></th>
         </tr>
         <tr data-th-each="task : ${tasks}">
+            <td data-th-text="${task.id}"></td>
             <td data-th-text="${task.document.name}"></td>
             <td data-th-text="${task.document.description}"></td>
-            <td data-th-text="${task.document.status}"></td>
-            <td th:if="${task.document.status == 0}">
-                <a th:href="${task.document.path}">Download</a>
+            <td th:if="${task.document.status == 1}">
                 <form method="POST" th:action="@{/reject}">
                     <input type="hidden" name="taskId" id="taskId" th:value="${task.id}"/>
-                    <button type="submit">Reject</button>
+                    <button type="submit"  class="btn btn-danger btn-sm">Reject</button>
                 </form>
 
                 <form method="POST" th:action="@{/approve}">
                     <input type="hidden" name="taskId" id="taskId" th:value="${task.id}"/>
-                    <button type="submit">Approve</button>
+                    <button type="submit"  class="btn btn-primary btn-sm">Approve</button>
                 </form>
             </td>
         </tr>
